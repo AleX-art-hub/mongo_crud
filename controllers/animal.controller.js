@@ -49,9 +49,9 @@ module.exports.updateAnimal = async (req, res, next) => {
 module.exports.deleteAnimal = async (req, res, next) => {
     const {params: {animalId}} = req;
     try{
-        const deleteAnimal = await Animal.findByIdAndDelete(animalId);
-        if(deleteAnimal){
-            return res.status(201).send({data: deleteAnimal});
+        const foundAnimal = await Animal.findByIdAndDelete(animalId);
+        if(foundAnimal){
+            return res.status(201).send({data: foundAnimal});
         }
         res.status(404).send('Animal not found');
     } catch (err){
